@@ -1,22 +1,18 @@
 <template>
-  <RouterView />
+    <n-message-provider>
+        <RouterView />
+    </n-message-provider>
 </template>
 
-<style scoped></style>
+<script setup>
+import { onMounted } from 'vue';
+import ribbon from './utils/ribbon.js';
+import './utils/tableEvent.js';
+import { NMessageProvider } from 'naive-ui';
 
-<script>
-import { ref, onMounted } from 'vue'
-import ribbon from './components/ribbon.js'
-export default {
-  setup() {
-    const message = ref('你好，wps加载项')
-    onMounted(() => {
-      window.ribbon = ribbon
-    })
-
-    return {
-      message
-    }
-  }
-}
+onMounted(() => {
+    window.ribbon = ribbon;
+});
 </script>
+
+<style scoped></style>

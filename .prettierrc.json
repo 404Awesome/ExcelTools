@@ -1,8 +1,18 @@
 {
-  "$schema": "https://json.schemastore.org/prettierrc",
-  "semi": false,
-  "tabWidth": 2,
-  "singleQuote": true,
-  "printWidth": 100,
-  "trailingComma": "none"
+    "$schema": "https://json.schemastore.org/prettierrc",
+    "printWidth": 800,
+    "eslintIntegration": true,
+    "stylelintIntegration": true,
+    "tabWidth": 4,
+    "semi": true,
+    "singleQuote": true,
+    "bracketSpacing": true,
+    "arrowParens": "avoid",
+    "htmlWhitespaceSensitivity": "ignore",
+    "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
+    "files.insertFinalNewline": true,
+    "useTabs": false,
+    "endOfLine": "auto",
+    "ignorePath": ".gnore",
+    "trailingComma": "none"
 }
