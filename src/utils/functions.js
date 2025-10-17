@@ -13,12 +13,3 @@ function custom_function(arg0, arg1, arg2, arg3, arg4) {
     console.log(123);
     return message;
 }
-
-/**
- * 测试函数
- * @customfunction
- * @returns {any} - 可以设置返回值类型
- */
-function test() {
-    return 123;
-}

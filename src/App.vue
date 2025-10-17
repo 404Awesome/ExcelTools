@@ -7,8 +7,9 @@
 <script setup>
 import { onMounted } from 'vue';
 import ribbon from './utils/ribbon.js';
-import './utils/tableEvent.js';
 import { NMessageProvider } from 'naive-ui';
+// 统一引入js资源
+import './introduce.js';
 
 onMounted(() => {
     window.ribbon = ribbon;

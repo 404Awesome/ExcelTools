@@ -1,9 +1,12 @@
 //在后续的wps版本中，wps的所有枚举值都会通过wps.Enum对象来自动支持，现阶段先人工定义
 var WPS_Enum = {
     msoCTPDockPositionLeft: 0,
-    msoCTPDockPositionRight: 2
+    msoCTPDockPositionRight: 2,
+    xlHAlignCenter: 'xlHAlignCenter',
+    xlVAlignCenter: 'xlVAlignCenter'
 };
 
+// 获取Url路径
 function GetUrlPath() {
     // 在本地网页的情况下获取路径
     if (window.location.protocol === 'file:') {
@@ -18,6 +21,7 @@ function GetUrlPath() {
     return `${protocol}//${hostname}${portPart}`;
 }
 
+// 获取路由中的hash值
 function GetRouterHash() {
     if (window.location.protocol === 'file:') {
         return '';
@@ -83,4 +87,39 @@ function debounce(func, wait) {
     };
 }
 
-export { WPS_Enum, GetUrlPath, GetRouterHash, OpenTaskpPane, CloseTaskPane, throttle, debounce };
+// 新建工作表
+function newSheets(title, array, colWight = 10, rowHeight = 20) {
+    Application.Worksheets.Add();
+    Application.ActiveSheet.Name = title;
+    let activeSheet = Application.Worksheets.Item(title);
+    let resultAreas = activeSheet.Range('A1').Resize(array.length, array[0].length);
+    resultAreas.Borders.LineStyle = 'Double';
+    resultAreas.Borders.Color = 0x000000;
+    resultAreas.HorizontalAlignment = Application.Enum.xlHAlignCenter;
+    resultAreas.VerticalAlignment = Application.Enum.xlVAlignCenter;
+    resultAreas.NumberFormat = '@';
+    resultAreas.RowHeight = rowHeight;
+    resultAreas.Columns.ColumnWidth = colWight;
+    resultAreas.Value2 = array;
+    return resultAreas;
+}
+
+/* 将一维数组分割成多维数组
+ * 列如：[1, 2, 3, 4, 5, 6]
+ * 生成：[
+ *		  [1, 2, 3],
+ *		  [4, 5, 6]
+ *	    ]
+ */
+function chunkArray(array, number) {
+    if (!array.length || !number || number < 1) return [];
+    let [start, end, result] = [null, null, []];
+    for (let i = 0; i < Math.ceil(array.length / number); i++) {
+        start = i * number;
+        end = start + number;
+        result.push(array.slice(start, end));
+    }
+    return result;
+}
+
+export { WPS_Enum, GetUrlPath, GetRouterHash, OpenTaskpPane, CloseTaskPane, throttle, debounce, newSheets, chunkArray };

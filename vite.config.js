@@ -14,11 +14,11 @@ export default defineConfig({
             src: 'manifest.xml',
             dest: 'manifest.xml'
         }),
-        functionsScanner({
-            inputJsPath: 'src/utils/functions.js',
-            outputJsonPath: 'functions.json',
-            namespace: 'Tools'
-        }),
+        // functionsScanner({
+        //     inputJsPath: 'src/utils/functions.js',
+        //     outputJsonPath: 'functions.json',
+        //     namespace: 'Tools'
+        // }),
         vue(),
         AutoImport({
             imports: ['vue']

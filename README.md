@@ -1,35 +1,37 @@
-# wpsdemovue3
+# WPS ExcelTools加载项
 
-This template should help get you started developing with Vue 3 in Vite.
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
+### 安装依赖
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### 启动项目
 
 ```sh
-npm run dev
+wpsjs debug
 ```
 
-### Compile and Minify for Production
+### 打包项目
 
 ```sh
-npm run build
+wpsjs build
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+### Mac M芯片安装
 
-```sh
-npm run lint
+> 将7z压缩包解压到以下路径
+> /Users/admin/Library/Containers/com.kingsoft.wpsoffice.mac/Data/.kingsoft/wps/jsaddons
+
+### 修改publish.xml
+
+> 打开publish.xml
+> 主要是修改url变量，路径是打包后的7z文件
+> 注意name和version变量是否对应package.json文件中的变量
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<jsplugins>
+  <jsplugin install="null" name="excel-tools" enable="enable_dev" url="/Users/admin/Desktop/excel-tools.7z" type="et" version="1.0.0" customDomain=""/>
+</jsplugins>
 ```

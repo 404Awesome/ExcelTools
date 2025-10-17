@@ -354,7 +354,10 @@ function onDailyPlan() {
 
         // 打开 每日计划附加文本 任务窗格
         if (IsOnDailyPlanText) {
-            OpenTaskpPane(`/dailyplan?tomorrowDate=${tomorrowDate}&TeamName=${TeamName}`, 400);
+            // 询问是否生成附加文本
+            if (Application.confirm('\r是否生成每日计划附加文本！')) {
+                OpenTaskpPane(`/dailyplan?tomorrowDate=${tomorrowDate}&TeamName=${TeamName}`, 400);
+            }
         } else {
             alert('\r表格中有必填项未填写！');
         }

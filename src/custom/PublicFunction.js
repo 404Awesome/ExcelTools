@@ -1,3 +1,5 @@
+import { chunkArray } from '../utils/utils';
+
 // 关于工具箱信息
 function onAbout() {
     alert(`WPS(Excel)工具集\rJS / Vue / Vite / Vscode开发\r@一介俗人`);
