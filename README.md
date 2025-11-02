@@ -35,3 +35,12 @@ wpsjs build
   <jsplugin install="null" name="excel-tools" enable="enable_dev" url="/Users/admin/Desktop/excel-tools.7z" type="et" version="1.0.0" customDomain=""/>
 </jsplugins>
 ```
+
+### 问题
+
+#### wpsjs build无法打包成.7z文件
+
+> 1. 首先全局安装npm依赖
+>    npm install github:develar/7zip-bin
+> 2. 修改依赖的权限
+>    sudo chmod -R 777 依赖路径
