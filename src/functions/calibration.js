@@ -8,8 +8,10 @@ wps?.AddCustomFunction(
     'getInputFiveData',
     function (inputVal, fixed) {
         // 获取输入值 格式如：0~1.6Mpa 下限~上限单位
-        inputVal = ['MPA', 'KPA'].map(item => {
-            return inputVal.toString().toUpperCase().replace(item, '');
+        ['MPA', 'KPA'].map(item => {
+            if (inputVal.toString().toUpperCase().indexOf(item) !== -1) {
+                inputVal = inputVal.toString().toUpperCase().replace(item, '');
+            }
         })[0];
 
         // 分割数组
