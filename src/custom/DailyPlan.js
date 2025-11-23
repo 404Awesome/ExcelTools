@@ -194,7 +194,8 @@ function onDailyPlan() {
             /* 生成 <作业部位及内容> 并填入
              * 如果 <作业区域名称> 后一个字是数字, 添加 "装置" 二字
              */
-            GetValue2(`H${index}`).Value2 = `中化六建${GetValue2(`I${index}`).Value2}人` + GetValue2(`E${index}`).Value2 + (!!parseInt(GetValue2(`E${index}`).Value2.slice(-1)) ? '装置' : '') + GetValue2(`B${index}`).Value2;
+            // GetValue2(`H${index}`).Value2 = `中化六建${GetValue2(`I${index}`).Value2}人` + GetValue2(`E${index}`).Value2 + (!!parseInt(GetValue2(`E${index}`).Value2.slice(-1)) ? '装置' : '') + GetValue2(`B${index}`).Value2;
+            GetValue2(`H${index}`).Value2 = GetValue2(`E${index}`).Value2 + (!!parseInt(GetValue2(`E${index}`).Value2.slice(-1)) ? '装置' : '') + GetValue2(`B${index}`).Value2;
 
             // 根据 风险等级名称 生成 风险等级编码 并填入
             GetValue2(`D${index}`).Value2 = RiskLevel[GetValue2(`C${index}`).Value2];
@@ -246,7 +247,7 @@ function onDailyPlan() {
                         GetValue2(`K${index}`).Value2 = createDate(days.oneDay, GetValue2(`J${index}`).Value2);
                     } else if (GetValue2(`G${index}`).Value2 === '二级') {
                         GetValue2(`K${index}`).Value2 = createDate(days.threeDay, GetValue2(`J${index}`).Value2);
-                    } else if (GetValue2(`G${index}`) === '三级') {
+                    } else if (GetValue2(`G${index}`).Value2 === '三级') {
                         GetValue2(`K${index}`).Value2 = createDate(days.sevenDay, GetValue2(`J${index}`).Value2);
                     } else {
                         // 作业级别名称填写错误

@@ -61,7 +61,7 @@ function onGenerate() {
             // 队伍名称
             TeamName,
             // 队伍总在场人数 含队长、安全员等管理人员和后勤
-            total: 28,
+            total: 40,
             // 管理人员数量 (队长、技术员、安全员)
             manageStaff: 6,
             // 后勤人员数量
