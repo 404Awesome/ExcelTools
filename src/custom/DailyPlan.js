@@ -211,7 +211,7 @@ function onDailyPlan() {
                     // 作业级别名称 无级别
                     GetValue2(`G${index}`).Value2 = '';
                     // 作业周期为10天
-                    GetValue2(`K${index}`).Value2 = createDate(days.tenDay, GetValue2(`J${index}`));
+                    GetValue2(`K${index}`).Value2 = createDate(days.tenDay, GetValue2(`J${index}`).Value2);
                     break;
                 case '动土作业（项目部）':
                     /* 作业周期如下
