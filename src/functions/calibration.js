@@ -146,12 +146,20 @@ wps?.AddCustomFunction(
 wps?.AddCustomFunction(
     NameSpace,
     'getError',
-    function (standardData, testedData) {
-        // 获取标准行程的三点数据 正1/正2/正3/反1/反2/反3
-        let standardThreeData = [...getInputThreeData(standardData, 2), ...getInputThreeData(standardData, 2).reverse()];
+    function (standardData, testedData, direction) {
+        // 获取标准行程的三点数据
+        let standardThreeData = [];
+        // 获取实测行程的三点数据
+        let testedThreeData = [];
 
-        // 获取实测行程的三点数据 正1/正2/正3/反1/反2/反3
-        let testedThreeData = testedData[0];
+        // 判断阀门作用方向
+        if (direction.toUpperCase() === 'FO') {
+            standardThreeData = [...getInputThreeData(standardData, 2).reverse(), ...getInputThreeData(standardData, 2)];
+            testedThreeData = testedData[0].reverse();
+        } else {
+            standardThreeData = [...getInputThreeData(standardData, 2), ...getInputThreeData(standardData, 2).reverse()];
+            testedThreeData = testedData[0];
+        }
 
         // 运算单位
         let unit = '';
@@ -188,7 +196,8 @@ wps?.AddCustomFunction(
         result: { type: 'string' },
         parameters: [
             { name: '实测行程', type: 'string', description: '例如0~14.3mm' },
-            { name: '实测行程数据', type: 'array', description: '例如正:0.00/7.15/14.30' }
+            { name: '实测行程数据', type: 'array', description: '例如正:0.00/7.15/14.30' },
+            { name: '阀门作用方向', type: 'string', description: '例如:FC/FO' }
         ]
     }
 );
