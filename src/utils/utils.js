@@ -127,7 +127,7 @@ function chunkArray(array, number) {
  */
 function getInputThreeData(inputVal, fixed) {
     // 获取输入值 格式如：0~1.6Mpa 下限~上限单位
-    ['MPA', 'KPA', 'MM'].map(item => {
+    ['MPA', 'KPA'].map(item => {
         if (inputVal.toString().toUpperCase().indexOf(item) !== -1) {
             inputVal = inputVal.toString().toUpperCase().replace(item, '');
         }
