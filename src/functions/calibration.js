@@ -117,9 +117,11 @@ wps?.AddCustomFunction(
  */
 function getTypeInputThreeData(inputVal, type, fixed) {
     // 获取输入值 格式如：0~1.6Mpa 下限~上限单位
+    let unit = '';
     ['°', 'MM'].map(item => {
         if (inputVal.toString().toUpperCase().indexOf(item) !== -1) {
             inputVal = inputVal.toString().toUpperCase().replace(item, '');
+            unit = item;
         }
     })[0];
 
@@ -149,6 +151,11 @@ function getTypeInputThreeData(inputVal, type, fixed) {
             .map(item => {
                 result.push(new Number(botton < 0 ? botton + (top - botton) * Three[item] : (top - botton) * Three[item] + botton).toFixed(fixed));
             });
+    }
+
+    // 判断单位是否是 ° ，如果是则代表是开关阀，对数组进行处理
+    if (unit === '°') {
+        result[1] = '';
     }
 
     // 返回结果
@@ -198,14 +205,19 @@ wps?.AddCustomFunction(
     NameSpace,
     'getError',
     function (standardData, testedData, direction) {
-        // 判断阀门作用方向 获取标准行程的三点数据
-        let standardThreeData = [...getTypeInputThreeData(standardData, direction, 2), ...getTypeInputThreeData(standardData, direction, 2).reverse()];
-
         // 运算单位
         let unit = '';
         ['°', 'MM'].map(item => {
             if (standardData.toUpperCase().indexOf(item) > 0) unit = item.toLocaleLowerCase();
         });
+
+        // 获取标准行程的三点数据
+        let standardThreeData = [];
+        if (unit === '°') {
+            standardThreeData = [...getTypeInputThreeData(standardData, direction, 2), ...getTypeInputThreeData(standardData, direction, 2)];
+        } else {
+            standardThreeData = [...getTypeInputThreeData(standardData, direction, 2), ...getTypeInputThreeData(standardData, direction, 2).reverse()];
+        }
 
         // 误差结果
         let result = [];
@@ -224,6 +236,13 @@ wps?.AddCustomFunction(
         // 运算回差
         for (let index = 0; index < 3; index++) {
             result.push(Math.max(result[index + 2], result[index + 4]).toFixed(2));
+        }
+
+        // 判断单位是否是 ° ，如果是则代表是开关阀，对数组进行处理
+        if (unit === '°') {
+            result[2] = '';
+            result[5] = '';
+            result[9] = '';
         }
 
         // 返回结果
