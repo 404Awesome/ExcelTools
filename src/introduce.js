@@ -5,4 +5,4 @@ import './utils/tableEvent.js';
 import './functions/stringHandle.js';
 
 // 引入自定义函数 - 仪表调校
-import './functions/calibration.js';
+import './functions/instrument.js';
