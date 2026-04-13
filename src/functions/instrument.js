@@ -57,13 +57,21 @@ wps?.AddCustomFunction(
 /* 调节阀/执行器/开关阀调校记录
  * 根据精确度及行程返回允许误差
  * ±0.1% / 0~14.3mm -> ±0.143mm
+ * 1.0级 / 0~14.3mm -> ±0.143mm
  */
 wps?.AddCustomFunction(
     NameSpace,
     'getAllowableError',
     function (accuracy, itinerary, unit, fixed) {
-        // 处理精确度
-        let handleAccuracy = accuracy.replace('±', '').replace('%', '');
+        // 判断精确度是 ± 或者 级 并运算
+        let handleAccuracy = '';
+        if (accuracy.toString().includes('±')) {
+            handleAccuracy = accuracy.replace('±', '').replace('%', '');
+        } else if (accuracy.toString().includes('级')) {
+            handleAccuracy = accuracy.replace('级', '') * 0.1;
+        }
+        alert(handleAccuracy.toString());
+
         // 处理行程
         let handleItinerary = itinerary.split('~')[1].replace(unit, '');
         // 运算允许误差
