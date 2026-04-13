@@ -62,7 +62,10 @@ wps?.AddCustomFunction(
 wps?.AddCustomFunction(
     NameSpace,
     'getAllowableError',
-    function (accuracy, itinerary, unit, fixed) {
+    function (accuracy, itinerary, fixed) {
+        // 获取单位
+        let unit = getInputUnit(itinerary);
+
         // 判断精确度是 ± 或者 级 并运算
         let handleAccuracy = '';
         if (accuracy.toString().includes('±')) {
@@ -82,7 +85,6 @@ wps?.AddCustomFunction(
         parameters: [
             { name: '精确度', type: 'string', description: '例如±0.1%' },
             { name: '行程', type: 'string', description: '例如0~14.3mm' },
-            { name: '行程单位', type: 'string', description: '例如mm' },
             { name: '小数点', type: 'number', description: '保留几位小数点!' }
         ]
     }
@@ -119,9 +121,6 @@ wps?.AddCustomFunction(
         for (let index = 0; index < 3; index++) {
             result.push(Math.max(result[index + 1], result[index + 4]).toFixed(fixed));
         }
-
-        // 判断单位是否是 ° ，如果是则代表是开关阀，对结果数组进行处理
-        if (unit === '°') result[2] = result[5] = result[9] = '';
 
         // 返回结果
         return result;
