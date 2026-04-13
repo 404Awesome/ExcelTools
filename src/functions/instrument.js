@@ -70,7 +70,6 @@ wps?.AddCustomFunction(
         } else if (accuracy.toString().includes('级')) {
             handleAccuracy = accuracy.replace('级', '') * 0.1;
         }
-        alert(handleAccuracy.toString());
 
         // 处理行程
         let handleItinerary = itinerary.split('~')[1].replace(unit, '');
