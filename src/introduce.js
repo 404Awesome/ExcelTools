@@ -6,3 +6,6 @@ import './functions/stringHandle.js';
 
 // 引入自定义函数 - 仪表调校
 import './functions/instrument.js';
+
+// 引入自定义函数 - 六化建处理
+import './functions/ZHLJ.js';
