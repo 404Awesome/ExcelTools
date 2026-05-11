@@ -6,6 +6,9 @@ var WPS_Enum = {
     xlVAlignCenter: 'xlVAlignCenter'
 };
 
+// 命名空间 自定义函数使用
+const NameSpace = 'Tools';
+
 // 获取Url路径
 function GetUrlPath() {
     // 在本地网页的情况下获取路径
@@ -122,4 +125,4 @@ function chunkArray(array, number) {
     return result;
 }
 
-export { WPS_Enum, GetUrlPath, GetRouterHash, OpenTaskpPane, CloseTaskPane, throttle, debounce, newSheets, chunkArray };
+export { WPS_Enum, NameSpace, GetUrlPath, GetRouterHash, OpenTaskpPane, CloseTaskPane, throttle, debounce, newSheets, chunkArray };

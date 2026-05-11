@@ -20,7 +20,9 @@
 
         <!-- 生成后的文本 -->
         <div v-show="resultText" class="resultText">
-            <pre style="white-space: pre-wrap; :break-word">{{ resultText }}</pre>
+            <n-scrollbar style="max-height: 66.5vh">
+                <pre style="white-space: pre-wrap; padding: 15px">{{ resultText }}</pre>
+            </n-scrollbar>
         </div>
     </div>
 </template>
@@ -145,12 +147,8 @@ function onCopy() {
     if (resultText.value !== '') {
         // 复制文本到剪贴板
         navigator.clipboard.writeText(resultText.value).then(
-            () => {
-                message.success('复制成功，可以粘贴使用!');
-            },
-            () => {
-                message.error('复制失败，请手动复制!');
-            }
+            () => message.success('复制成功，可以粘贴使用!'),
+            () => message.error('复制失败，请手动复制!')
         );
     }
 }
@@ -183,9 +181,6 @@ onMounted(() => {
 }
 
 #DailyPlan .resultText {
-    max-height: 65vh;
-    overflow-y: auto;
-    padding: 15px;
     border: 1px solid #d9d9d9;
     border-radius: 5px;
     background-color: #f5f5f5;

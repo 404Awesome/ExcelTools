@@ -1,4 +1,4 @@
-import { NameSpace } from '../constant';
+import { NameSpace } from '../utils/utils';
 
 // 计算实名制考勤的实际上班时间 每9小时为1个工，剩余时间为加班
 wps?.AddCustomFunction(

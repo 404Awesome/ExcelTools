@@ -1,7 +1,7 @@
 // 系统工具
 import System from './system.js';
 // 自定义工具
-import { WPS_Enum } from './utils.js';
+import { WPS_Enum, OpenTaskpPane } from './utils.js';
 // 公共自定义函数
 import { onAbout, onGitHub, onTestFunc } from '../custom/PublicFunction.js';
 // 每日计划自定义函数
@@ -36,13 +36,17 @@ function OnAction(control) {
         case 'GitHub':
             onGitHub();
             break;
+        // 测试按钮
+        case 'TEST':
+            onTestFunc();
+            break;
         // 每日计划按钮
         case 'MRJH':
             onDailyPlan();
             break;
-        // 测试按钮
-        case 'TEST':
-            onTestFunc();
+        // 仪表安装检查记录
+        case 'YBInstall':
+            OpenTaskpPane('/ybinstall', 400);
             break;
         default:
             break;
@@ -61,7 +65,15 @@ function GetImage(control) {
         case 'MRJH':
             return 'images/list.svg';
         case 'TEST':
-            return 'images/test.svg';
+            return 'images/bug.svg';
+        case 'YBProcessDoc':
+            return 'images/YBProcessDoc/YBProcessDoc.svg';
+        case 'YBInstall':
+            return 'images/Wrench.svg';
+        case 'DQProcessDoc':
+            return 'images/DQProcessDoc/DQProcessDoc.svg';
+        case 'DQTest':
+            return 'images/DQProcessDoc/DQProcessDoc.svg';
         default:
     }
     return 'images/default.svg';

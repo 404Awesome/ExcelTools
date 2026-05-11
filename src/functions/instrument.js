@@ -1,4 +1,4 @@
-import { NameSpace } from '../constant';
+import { NameSpace } from '../utils/utils';
 import { getInputUnit, getInputThreeData, getInputFiveData } from '../utils/instrumentUtils';
 
 /* 根据仪表量程范围返回3点数值

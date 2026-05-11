@@ -1,19 +1,15 @@
 <template>
     <div>
-        <h1>{{ msg }}</h1>
+        <h1 class="title">Hello ExcelTools</h1>
+        <p>欢迎使用本工具!</p>
+        <p>WPS(Excel)工具集 JS / Vue / Vite / Vscode/ WPSJS开发</p>
     </div>
 </template>
 
-<script>
-import('@/utils/functions.js');
-export default {
-    name: 'HelloWps',
-    data() {
-        return {
-            msg: '欢迎来到wps加载项的世界!'
-        };
-    }
-};
-</script>
+<script></script>
 
-<style scoped></style>
+<style scoped>
+.title {
+    text-align: center;
+}
+</style>

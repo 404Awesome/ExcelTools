@@ -8,9 +8,10 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    DailyPlan: typeof import('./src/components/custom/DailyPlan.vue')['default']
+    DailyPlan: typeof import('./src/components/NanHua/DailyPlan.vue')['default']
     Root: typeof import('./src/components/Root.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    YBInstall: typeof import('./src/components/YBProcessDoc/YBInstall.vue')['default']
   }
 }

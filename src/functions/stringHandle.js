@@ -1,4 +1,4 @@
-import { NameSpace } from '../constant';
+import { NameSpace } from '../utils/utils';
 
 // 根据身份证号返回年龄
 wps?.AddCustomFunction(

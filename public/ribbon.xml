@@ -2,15 +2,29 @@
     <ribbon startFromScratch="false">
         <tabs>
             <tab id="wpsAddinTab" label="武功秘籍">
+                <!-- 工具信息 -->
                 <group id="infoGroup" label="信息">
                     <button id="About" onAction="ribbon.OnAction" label="About" size="large" getImage="ribbon.GetImage" />
                     <button id="GitHub" onAction="ribbon.OnAction" label="GitHub" size="large" getImage="ribbon.GetImage" />
                 </group>
+                <!-- 测试相关 -->
+                <group id="AboutTest" label="测试相关">
+                    <button id="TEST" onAction="ribbon.OnAction" size="large" label="测试" getImage="ribbon.GetImage" />
+                </group>
+                <!-- 南化项目 每日计划 -->
                 <group id="DailyPlan" label="作业票相关">
                     <button id="MRJH" onAction="ribbon.OnAction" size="large" label="每日计划" getImage="ribbon.GetImage" />
                 </group>
-                <group id="AboutTest" label="测试相关">
-                    <button id="TEST" onAction="ribbon.OnAction" size="large" label="测试" getImage="ribbon.GetImage" />
+                <!-- 过程资料 -->
+                <group id="ProcessDocGroup" label="过程资料">
+                    <!-- 仪表过程资料 -->
+                    <menu id="YBProcessDoc" label="仪表过程资料" size="normal" getImage="ribbon.GetImage">
+                        <button id="YBInstall" onAction="ribbon.OnAction" label="仪表安装检查记录" getImage="ribbon.GetImage" />
+                    </menu>
+                    <!-- 电气过程资料 -->
+                    <menu id="DQProcessDoc" label="电气过程资料" size="normal" getImage="ribbon.GetImage">
+                        <button id="DQTest" label="待定" getImage="ribbon.GetImage" />
+                    </menu>
                 </group>
             </tab>
         </tabs>

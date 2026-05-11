@@ -1,6 +1,8 @@
+import { OpenTaskpPane } from '../utils/utils';
+
 // 关于工具箱信息
 function onAbout() {
-    alert(`WPS(Excel)工具集\rJS / Vue / Vite / Vscode/ WPSJS开发\r@一介俗人`);
+    OpenTaskpPane('/', 400);
 }
 
 // 打开GitHub连接
