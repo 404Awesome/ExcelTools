@@ -17,3 +17,12 @@ wps.ApiEvent.AddApiEventListener(
         CloseTaskPane();
     }, 1000)
 );
+
+// 当任务窗格隐藏之后触发此事件，将触发此事件 使用防抖函数降低触发频率
+wps.ApiEvent.AddApiEventListener(
+    'AfterTaskPaneHidden',
+    debounce(() => {
+        // 关闭任务窗格
+        CloseTaskPane();
+    }, 1000)
+);

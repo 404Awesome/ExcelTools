@@ -5,6 +5,11 @@ export default [
         component: () => import('../components/Root.vue')
     },
     {
+        path: '/function',
+        name: '自定义函数信息',
+        component: () => import('../components/FunctionInfo.vue')
+    },
+    {
         path: '/dailyplan',
         name: '每日计划',
         component: () => import('../components/NanHua/DailyPlan.vue')

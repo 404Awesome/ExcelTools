@@ -40,14 +40,14 @@ wps?.AddCustomFunction(NameSpace, 'getInputUnit', getInputUnit, {
 wps?.AddCustomFunction(
     NameSpace,
     'getValveStandardThreeData',
-    function (inputVal, type, fixed) {
-        return type.toUpperCase() === 'FC' ? getInputThreeData(inputVal, fixed) : getInputThreeData(inputVal, fixed).reverse();
+    function (range, type, fixed) {
+        return type.toUpperCase() === 'FC' ? getInputThreeData(range, fixed) : getInputThreeData(range, fixed).reverse();
     },
     {
         description: '根据FC/FO类型返回标准三点行程!',
         result: { type: 'array' },
         parameters: [
-            { name: '量程范围', type: 'string', description: '例如0~1Mpa, 返回Mpa!' },
+            { name: '行程范围', type: 'string', description: '例如0~1Mpa, 返回Mpa!' },
             { name: '阀门类型', type: 'string', description: '例如FO/FC!' },
             { name: '小数点位数', type: 'number', description: '例如2' }
         ]
@@ -61,7 +61,7 @@ wps?.AddCustomFunction(
  */
 wps?.AddCustomFunction(
     NameSpace,
-    'getAllowableError',
+    'getValveAllowableError',
     function (accuracy, itinerary, fixed) {
         // 获取单位
         let unit = getInputUnit(itinerary);
@@ -84,7 +84,7 @@ wps?.AddCustomFunction(
         result: { type: 'string' },
         parameters: [
             { name: '精确度', type: 'string', description: '例如±0.1%' },
-            { name: '行程', type: 'string', description: '例如0~14.3mm' },
+            { name: '行程范围', type: 'string', description: '例如0~14.3mm' },
             { name: '小数点', type: 'number', description: '保留几位小数点!' }
         ]
     }
@@ -95,13 +95,13 @@ wps?.AddCustomFunction(
  */
 wps?.AddCustomFunction(
     NameSpace,
-    'getError',
-    function (standardData, testedData, direction, fixed) {
+    'getValveError',
+    function (range, data, direction, fixed) {
         // 运算单位
-        let unit = getInputUnit(standardData);
+        let unit = getInputUnit(range);
 
         // 获取标准行程的三点数据
-        let standardThreeData = direction.toUpperCase() === 'FC' ? getInputThreeData(standardData, fixed) : getInputThreeData(standardData, fixed).reverse();
+        let standardThreeData = direction.toUpperCase() === 'FC' ? getInputThreeData(range, fixed) : getInputThreeData(range, fixed).reverse();
 
         // 误差结果
         let result = [];
@@ -111,7 +111,7 @@ wps?.AddCustomFunction(
 
         // 运算误差
         [...standardThreeData, ...standardThreeData].map((item, index) => {
-            result.push((new Number(item) - new Number(testedData[0][index])).toFixed(fixed).toString().replace('-', ''));
+            result.push((new Number(item) - new Number(data[0][index])).toFixed(fixed).toString().replace('-', ''));
         });
 
         // 填入误差单位
@@ -129,9 +129,9 @@ wps?.AddCustomFunction(
         description: '根据实测行程返回误差!',
         result: { type: 'array' },
         parameters: [
-            { name: '实测行程', type: 'string', description: '例如0~14.3mm' },
-            { name: '实测行程数据', type: 'array', description: '例如正:0.00/7.15/14.30' },
-            { name: '阀门作用方向', type: 'string', description: '例如:FC/FO' },
+            { name: '行程范围', type: 'string', description: '例如0~14.3mm' },
+            { name: '实测行程', type: 'array', description: '例如正:0.00/7.15/14.30' },
+            { name: '作用方向', type: 'string', description: '例如:FC/FO' },
             { name: '小数点', type: 'number', description: '保留几位小数点!' }
         ]
     }

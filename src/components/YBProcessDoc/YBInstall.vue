@@ -100,8 +100,7 @@ function onChoose() {
 
         //判断输入值是否存在 或者 是否只选择了一个单元格
         if (!myRange || typeof myRange == 'string') {
-            alert('666!');
-            return new Error();
+            myRange = [[myRange]];
         }
 
         // 遍历区域
@@ -110,12 +109,36 @@ function onChoose() {
         });
 
         // 二次分割数组;
+        let maxLength = 0;
+        let defaultBool = 'null';
         pendingArr.value = chunkArray(chunkArray(handleRange.value, 3), 6).map(item => {
-            return item.map(no => `\t\t${no.join('\t\t\t')}`).join('\r\n');
+            // 判断这个数组内最长的仪表位号，求字符串长度
+            item.map(no1 =>
+                no1.map(no2 => {
+                    if (no2.length > maxLength) {
+                        maxLength = no2.length;
+                    }
+                })
+            );
+
+            // 根据最长长度为低于这个长度的仪表位号追加空格
+            item = item.map(no1 => {
+                return no1.map(no2 => {
+                    if (no2.length < maxLength) {
+                        return (no2 += Array(maxLength - no2.length)
+                            .fill(' ')
+                            .join(''));
+                    } else {
+                        return no2;
+                    }
+                });
+            });
+
+            // 判断第一行的长度，如果过长则削减 \t 否则默认处理
+            defaultBool = defaultBool === 'null' && item.map(no => `\t\t${no.join('\t\t\t')}`)[0].length > 52 ? true : false;
+            return defaultBool ? item.map(no => `\t${no.join('\t\t')}`).join('\r\n') : item.map(no => `\t\t${no.join('\t\t\t')}`).join('\r\n');
         });
-    } catch (err) {
-        console.log(err);
-    }
+    } catch (err) {}
 }
 
 // 初始化消息提示框插件

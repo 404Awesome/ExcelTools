@@ -3,7 +3,7 @@ import System from './system.js';
 // 自定义工具
 import { WPS_Enum, OpenTaskpPane } from './utils.js';
 // 公共自定义函数
-import { onAbout, onGitHub, onTestFunc } from '../custom/PublicFunction.js';
+import { onAbout, onGitHub, onFnInfo, onTestFunc } from '../custom/PublicFunction.js';
 // 每日计划自定义函数
 import { onDailyPlan } from '../custom/DailyPlan.js';
 
@@ -36,6 +36,10 @@ function OnAction(control) {
         case 'GitHub':
             onGitHub();
             break;
+        // 自定义函数信息
+        case 'FnInfo':
+            onFnInfo();
+            break;
         // 测试按钮
         case 'TEST':
             onTestFunc();
@@ -62,6 +66,8 @@ function GetImage(control) {
             return 'images/about.svg';
         case 'GitHub':
             return 'images/link.svg';
+        case 'FnInfo':
+            return 'images/desc.svg';
         case 'MRJH':
             return 'images/list.svg';
         case 'TEST':

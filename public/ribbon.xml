@@ -6,6 +6,7 @@
                 <group id="infoGroup" label="信息">
                     <button id="About" onAction="ribbon.OnAction" label="About" size="large" getImage="ribbon.GetImage" />
                     <button id="GitHub" onAction="ribbon.OnAction" label="GitHub" size="large" getImage="ribbon.GetImage" />
+                    <button id="FnInfo" onAction="ribbon.OnAction" label="Function" size="large" getImage="ribbon.GetImage" />
                 </group>
                 <!-- 测试相关 -->
                 <group id="AboutTest" label="测试相关">

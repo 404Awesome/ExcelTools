@@ -15,10 +15,10 @@ let unitObj = {
 /* 根据仪表量程范围返回单位
  * 0~1Mpa -> Mpa
  */
-function getInputUnit(inputVal) {
+function getInputUnit(range) {
     let result = '';
     unitArrays.map(item => {
-        if (inputVal.toUpperCase().indexOf(item.toUpperCase()) !== -1) result = unitObj[item];
+        if (range.toUpperCase().indexOf(item.toUpperCase()) !== -1) result = unitObj[item];
     });
     return result;
 }
@@ -26,16 +26,16 @@ function getInputUnit(inputVal) {
 /* 根据仪表量程范围返回3点数值
  * 0~1Mpa -> 0 / 0.5 / 1
  */
-function getInputThreeData(inputVal, fixed) {
+function getInputThreeData(range, fixed) {
     // 获取输入值 格式如：0~1.6Mpa 下限~上限单位
     unitArrays.map(item => {
-        if (inputVal.toString().toUpperCase().indexOf(item) !== -1) {
-            inputVal = inputVal.toString().toUpperCase().replace(item, '');
+        if (range.toString().toUpperCase().indexOf(item) !== -1) {
+            range = range.toString().toUpperCase().replace(item, '');
         }
     })[0];
 
     // 分割数组
-    let [botton, top] = [...inputVal.split('~')];
+    let [botton, top] = [...range.split('~')];
     botton = new Number(botton);
     top = new Number(top);
 
@@ -59,16 +59,16 @@ function getInputThreeData(inputVal, fixed) {
 /* 根据仪表量程范围返回5点数值
  * 0~1Mpa -> 0 / 0.25 / 0.5 / 0.75 / 1
  */
-function getInputFiveData(inputVal, fixed) {
+function getInputFiveData(range, fixed) {
     // 获取输入值 格式如：0~1.6Mpa 下限~上限单位
     unitArrays.map(item => {
-        if (inputVal.toString().toUpperCase().indexOf(item) !== -1) {
-            inputVal = inputVal.toString().toUpperCase().replace(item, '');
+        if (range.toString().toUpperCase().indexOf(item) !== -1) {
+            range = range.toString().toUpperCase().replace(item, '');
         }
     })[0];
 
     // 分割数组
-    let [botton, top] = [...inputVal.split('~')];
+    let [botton, top] = [...range.split('~')];
     botton = new Number(botton);
     top = new Number(top);
 
