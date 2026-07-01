@@ -45,7 +45,7 @@ wps?.AddCustomFunction(
         }
 
         // 分割打卡时间
-        var timeParts = inputStr.split(/[,，]/);
+        var timeParts = inputStr.split(/[,，\n\r]+/);
 
         // 解析有效打卡次数
         var validCount = 0;
