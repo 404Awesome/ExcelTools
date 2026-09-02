@@ -10,9 +10,6 @@ declare module 'vue' {
   export interface GlobalComponents {
     DailyPlan: typeof import('./src/components/NanHua/DailyPlan.vue')['default']
     FunctionInfo: typeof import('./src/components/FunctionInfo.vue')['default']
-    NDivider: typeof import('naive-ui')['NDivider']
-    NGrid: typeof import('naive-ui')['NGrid']
-    NGridItem: typeof import('naive-ui')['NGridItem']
     Root: typeof import('./src/components/Root.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
