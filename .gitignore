@@ -2,3 +2,4 @@ node_modules
 wps-addon-build/*
 .omo
 dist
+.DS Store
